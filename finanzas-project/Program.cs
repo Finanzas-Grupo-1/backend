@@ -65,14 +65,14 @@ builder.Services.AddSwaggerGen(
         c.SwaggerDoc("v1",
             new OpenApiInfo
             {
-                Title = "ACME.LearningCenterPlatform.API",
+                Title = "BondView.API",
                 Version = "v1",
-                Description = "ACME Learning Center Platform API",
+                Description = "BondView API",
                 TermsOfService = new Uri("https://acme-learning.com/tos"),
                 Contact = new OpenApiContact
                 {
-                    Name = "ACME Studios",
-                    Email = "contact@acme.com"
+                    Name = "BondView",
+                    
                 },
                 License = new OpenApiLicense
                 {
