@@ -21,6 +21,7 @@ using finanzas_project.BonusesManagement.Domain.Services;
 using finanzas_project.BonusesManagement.Application.Internal.CommandServices;
 using finanzas_project.BonusesManagement.Application.Internal.QueryServices;
 using finanzas_project.IAM.Infrastructure.Pipeline.Middleware.Extensions;
+using finanzas_project.BonusesManagement.Application.Calculations;
 
 
 
@@ -125,7 +126,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IBonusesRepository, BondRepository>();
 builder.Services.AddScoped<IBondCommandService,BondCommandService>();
 builder.Services.AddScoped<IBondQueryService,BondQueryService>();
-
+builder.Services.AddScoped<IBondValuation, BondValuationDomainService>();
 
 
 // IAM Bounded Context Injection Configuration

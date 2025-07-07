@@ -1,4 +1,5 @@
-﻿using finanzas_project.BonusesManagement.Domain.Model.Queries;
+﻿using finanzas_project.BonusesManagement.Domain.Model.Commands;
+using finanzas_project.BonusesManagement.Domain.Model.Queries;
 using finanzas_project.BonusesManagement.Domain.Services;
 using finanzas_project.BonusesManagement.Interfaces.REST.Resources;
 using finanzas_project.BonusesManagement.Interfaces.REST.Transform;
@@ -45,9 +46,27 @@ namespace finanzas_project.BonusesManagement.Interfaces.REST
 
         }
 
+        [HttpPut("{bondId}")]
+        public async Task<IActionResult> UpdateBond([FromRoute] int bondId, [FromBody] UpdateBondResource updateBondResource)
+        {
+            var updateBondCommand = UpdateBondCommandFromResourceAssembler.ToCommandFromResource(bondId, updateBondResource);
+            var bond = await bondCommandService.Handle(updateBondCommand);
+
+            if (bond is null) return NotFound();
+
+            var resource = BondResourceFromEntityAssembler.ToResourceFromEntity(bond);
+            return Ok(resource);
+        }
 
 
-
+        [HttpDelete("{bondId}")]
+        public async Task<IActionResult> DeleteBond([FromRoute] int bondId)
+        {
+            var command = new DeleteBondCommand(bondId);
+            var success = await bondCommandService.Handle(command);
+            if (!success) return NotFound();
+            return NoContent();
+        }
 
 
 

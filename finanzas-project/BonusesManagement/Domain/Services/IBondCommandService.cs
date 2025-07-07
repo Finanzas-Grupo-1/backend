@@ -7,6 +7,10 @@ namespace finanzas_project.BonusesManagement.Domain.Services
     {
 
         Task<Bond?> Handle(CreateBondCommand command);
+        Task<Bond?> Handle(UpdateBondCommand command);
+
+        Task<bool> Handle(DeleteBondCommand command);
+
 
 
     }

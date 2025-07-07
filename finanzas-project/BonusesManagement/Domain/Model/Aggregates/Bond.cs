@@ -182,5 +182,60 @@ namespace finanzas_project.BonusesManagement.Domain.Model.Aggregates
         }
 
 
+
+    public void Update(
+    string name,
+    decimal nominalValue,
+    decimal commercialValue,
+    int years,
+    int paymentsPerYear,
+    decimal couponRate,
+    decimal redemptionPremium,
+    bool isEffectiveRate,
+    decimal? nominalRate,
+    int? capitalizationDays,
+    string currency,
+    decimal structuringCost,
+    decimal placementCost,
+    decimal flotationCost,
+    decimal cavaliCost,
+    int totalGracePeriods,
+    int partialGracePeriods,
+    decimal marketRate,
+    bool capitalizeInterests,
+    DateTime startDate
+)
+        {
+            Name = name;
+            NominalValue = nominalValue;
+            CommercialValue = commercialValue;
+            Years = years;
+            PaymentsPerYear = paymentsPerYear;
+            CouponRate = couponRate;
+            RedemptionPremium = redemptionPremium;
+            IsEffectiveRate = isEffectiveRate;
+            NominalRate = nominalRate;
+            CapitalizationDays = capitalizationDays;
+            Currency = currency;
+            StructuringCost = structuringCost;
+            PlacementCost = placementCost;
+            FlotationCost = flotationCost;
+            CavaliCost = cavaliCost;
+            TotalGracePeriods = totalGracePeriods;
+            PartialGracePeriods = partialGracePeriods;
+            MarketRate = marketRate;
+            StartDate = startDate;
+
+            // Limpiar flujos anteriores
+            CashFlows.Clear();
+
+            // Regenerar flujo de caja
+            GenerateCashFlows(startDate, capitalizeInterests);
+        }
+
+
+
+
+
     }
 }
